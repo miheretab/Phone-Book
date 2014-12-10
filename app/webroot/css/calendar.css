@@ -1,0 +1,63 @@
+#calendar tr td.day:hover {
+  background: #eeeeee;
+  cursor: pointer;
+}
+#calendar table tr td.old,
+#calendar table tr td.new {
+  color: #999999;
+}
+#calendar table tr td.disabled,
+#calendar table tr td.disabled:hover {
+  background: none;
+  color: #999999;
+  cursor: default;
+}
+#calendar table tr td.today,
+#calendar table tr td.today:hover,
+#calendar table tr td.today.disabled,
+#calendar table tr td.today.disabled:hover {
+  background-color: #fde19a;
+  background-image: -moz-linear-gradient(top, #fdd49a, #fdf59a);
+  background-image: -ms-linear-gradient(top, #fdd49a, #fdf59a);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdd49a), to(#fdf59a));
+  background-image: -webkit-linear-gradient(top, #fdd49a, #fdf59a);
+  background-image: -o-linear-gradient(top, #fdd49a, #fdf59a);
+  background-image: linear-gradient(top, #fdd49a, #fdf59a);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdd49a', endColorstr='#fdf59a', GradientType=0);
+  border-color: #fdf59a #fdf59a #fbed50;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+#calendar table tr td.today:hover,
+#calendar table tr td.today:hover:hover,
+#calendar table tr td.today.disabled:hover,
+#calendar table tr td.today.disabled:hover:hover,
+#calendar table tr td.today:active,
+#calendar table tr td.today:hover:active,
+#calendar table tr td.today.disabled:active,
+#calendar table tr td.today.disabled:hover:active,
+#calendar table tr td.today.active,
+#calendar table tr td.today:hover.active,
+#calendar table tr td.today.disabled.active,
+#calendar table tr td.today.disabled:hover.active,
+#calendar table tr td.today.disabled,
+#calendar table tr td.today:hover.disabled,
+#calendar table tr td.today.disabled.disabled,
+#calendar table tr td.today.disabled:hover.disabled,
+#calendar table tr td.today[disabled],
+#calendar table tr td.today:hover[disabled],
+#calendar table tr td.today.disabled[disabled],
+#calendar table tr td.today.disabled:hover[disabled] {
+  background-color: #fdf59a;
+}
+#calendar table tr td.today:active,
+#calendar table tr td.today:hover:active,
+#calendar table tr td.today.disabled:active,
+#calendar table tr td.today.disabled:hover:active,
+#calendar table tr td.today.active,
+#calendar table tr td.today:hover.active,
+#calendar table tr td.today.disabled.active,
+#calendar table tr td.today.disabled:hover.active {
+  background-color: #fbf069 \9;
+}
