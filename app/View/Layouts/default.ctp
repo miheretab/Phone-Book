@@ -29,11 +29,52 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
+		echo $this->Html->script('jquery');
+		echo $this->Html->script('swfobject');
+		echo $this->Html->script('scriptcam.min');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+	
+<script language="JavaScript"> 
+	$(document).ready(function() {
+		$("#webcam").scriptcam({
+			showMicrophoneErrors:false,
+			onError:onError,
+			cornerRadius:20,
+			disableHardwareAcceleration:1,
+			cornerColor:'e3e5e2',
+			onWebcamReady:onWebcamReady,
+			uploadImage:'upload.gif',
+			onPictureAsBase64:base64_tofield_and_image
+		});
+	});
+	function base64_tofield_and_image(b64) {
+		var image;
+		if(b64) {
+			image = b64;
+		} else {
+			image = $.scriptcam.getFrameAsBase64()
+		}
+		$('#UserImage').val(image);
+		$('#image').attr("src","data:image/png;base64,"+image);
+	};
+	function changeCamera() {
+		$.scriptcam.changeCamera($('#cameraNames').val());
+	}
+	function onError(errorId,errorMsg) {
+		$( "#capture" ).attr( "disabled", true );
+		alert(errorMsg);
+	}			
+	function onWebcamReady(cameraNames,camera,microphoneNames,microphone,volume) {
+		$.each(cameraNames, function(index, text) {
+			$('#cameraNames').append( $('<option></option>').val(index).html(text) )
+		}); 
+		$('#cameraNames').val(camera);
+	}
+</script>	
 </head>
 <body>
 	<div id="container">
@@ -41,8 +82,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<div class="menu">
 				<ul>
 				<?php if($this->Session->check('Auth.User')) { ?>
+					<li><?php echo $this->Html->link(isset($user['User']['image']) ? '<img style="width:50px;height:23px;" src="data:image/png;base64,' . $user['User']['image'] . '"/>' : $user['User']['username'], '/profile', array('escape' => false)); ?></li>
 					<li><?php echo $this->Html->link('Contacts', '/'); ?></li>
-					<li><?php echo $this->Html->link('Profile', '/profile'); ?></li>
 					<li><?php echo $this->Html->link('Logout', '/logout'); ?></li>
 				<?php } else { ?>
 					<li><?php echo $this->Html->link('Register', '/register'); ?></li>

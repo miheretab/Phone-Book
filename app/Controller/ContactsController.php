@@ -24,7 +24,7 @@ class ContactsController extends AppController {
 	public function index() {
 		$this->Contact->recursive = 0;
 		$this->Paginator->settings = array(
-			'conditions' => array('user_id' => 1),//$this->Auth->user('id')
+			'conditions' => array('user_id' => $this->Auth->user('id'))
 		);
 		$this->set('contacts', $this->Paginator->paginate());
 	}

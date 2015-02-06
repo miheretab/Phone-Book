@@ -54,5 +54,13 @@ class AppController extends Controller {
 	
 	public function isAuthorized($user) {
 		return true;
-	}	
+	}
+	
+	public function beforeFilter() {
+		parent::beforeFilter();
+		if($this->Auth->user('id')) {
+			$this->loadModel('User', $this->Auth->user('id'));
+			$this->set('user', $this->User->read());
+		}
+	}
 }
